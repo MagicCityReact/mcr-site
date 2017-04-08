@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import path from 'path';
 
 module.exports = {
-    devtool: 'inline-source-map',
+    devtool: 'cheap-module-eval-source-map',
     entry: [
         'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
         path.resolve(__dirname, 'src/index')
@@ -21,10 +21,10 @@ module.exports = {
     ],
     module: {
         rules: [
-            {test: /\.js$/, include: path.join(__dirname, 'src'), loaders: ['babel-loader']},
-            {test: /(\.css)$/, loaders: ['style-loader', 'css-loader']},
-            {test: /\.eot/, loader: 'file-loader'},
-            {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, loader: 'file-loader'},
+            {test: /\.js$/, include: path.join(__dirname, 'src'), use: ['babel-loader']},
+            {test: /(\.css)$/, use: ['style-loader', 'css-loader']},
+            {test: /\.eot/, use: 'file-loader'},
+            {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, use: 'file-loader'},
         ]
     }
 };
