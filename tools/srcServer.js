@@ -3,16 +3,16 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import path from 'path';
-import config from '../webpack.config.dev';
+import webpackDevConfig from '../webpack.config.dev';
 import open from 'open';
 
 const port = 3000;
 const app = express();
-const compiler = webpack(config);
+const compiler = webpack(webpackDevConfig);
 
 app.use(webpackDevMiddleware(compiler, {
     noInfo: true,
-    publicPath: config.output.publicPath
+    publicPath: webpackDevConfig.output.publicPath
 }));
 
 app.use(webpackHotMiddleware(compiler));
