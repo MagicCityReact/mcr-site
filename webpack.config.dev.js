@@ -21,10 +21,9 @@ module.exports = {
     ],
     module: {
         rules: [
-            {test: /\.js$/, include: path.join(__dirname, 'src'), use: ['babel-loader']},
-            {test: /(\.css)$/, use: ['style-loader', 'css-loader']},
-            {test: /\.eot/, use: 'file-loader'},
-            {test: /\.svg(\?v=\d+\.\d+\.\d+)?$/, use: 'file-loader'},
+            {test: /\.js$/, exclude: [/node_modules/], use: ['babel-loader']},
+            {test: /\.css$/, use: ['style-loader', 'css-loader']},
+            {test: /\.svg$/, use: 'file-loader'}
         ]
     }
 };
