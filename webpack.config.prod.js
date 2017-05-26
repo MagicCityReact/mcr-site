@@ -1,6 +1,7 @@
-import webpack from 'webpack';
-import path from 'path';
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
+import HtmlWebpackPlugin from 'html-webpack-plugin'
+import path from 'path'
+import webpack from 'webpack'
 
 const GLOBALS = {
     'process.env.NODE_ENV': JSON.stringify('production')
@@ -21,7 +22,11 @@ module.exports = {
     plugins: [
         new webpack.DefinePlugin(GLOBALS),
         new ExtractTextPlugin('styles.css'),
-        new webpack.optimize.UglifyJsPlugin()
+        new webpack.optimize.UglifyJsPlugin(),
+        new HtmlWebpackPlugin({
+            filename: './index.html',
+            template: './tools/index.template.ejs'
+        })
     ],
     module: {
         rules: [
